@@ -1,0 +1,23 @@
+<!-- // NAVBAR -->
+
+<div class="sample-column">
+  <igx-navbar  title="Telco-frontend-Pair7">
+    <igx-navbar-action>
+      <button igxButton="icon">
+        <igx-icon>menu</igx-icon>
+      </button>
+    </igx-navbar-action>
+
+    <!-- <h6 routerLink="/services">Service</h6>  // anasayfa--> 
+    <h6 routerLink="/products">Product</h6>
+    <h6 routerLink="/categories">Category</h6>
+    <h6 routerLink="/customers">Customer</h6>
+    <h6 routerLink="/roles">Role</h6>
+    <h6 routerLink="/roles">Role</h6>
+    <h6 routerLink="/services">Service</h6>
+
+        <h6 *ngIf="!loggedin()"  class="btn btn-primary me-md-2" routerLink="/auth">LogIn</h6>
+        <button *ngIf="loggedin()"  class="btn btn-primary me-md-2" (click)="onLogut()">LogOut</button>
+
+  </igx-navbar>
+</div>

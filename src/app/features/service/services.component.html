@@ -1,0 +1,51 @@
+
+ <div class="container">
+
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th scope="col">#Id</th>
+          <th scope="col">Service Name</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let service of services">
+    
+          <tr>
+
+            <th scope="row">{{ service.id }}</th>
+            <td>{{ service.name }}</td>
+            <!-- <td >
+
+              <button  (click)="deleteService(item.id ?)">x</button>
+              <button  (click)="service.id ? updateService() : addService(service)">{{ service.id ? "Update" : "Add"}}</button>
+            </td> -->
+            <td  *ngIf="service.id != null">
+            <button class="btn btn-secondary"(click)="update(service)">Update</button>
+            <button class="btn btn-danger"(click)="deleteService(service.id)">Delete</button>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+  <div class="row">
+    <div class="col-md-3"*ngIf="service != null"> <input class="form-control form-control-lg" [(ngModel)]="service.name"/></div>
+    <div class="col-md-3"*ngIf="service != null">
+  
+        <button class="btn btn-secondary" (click)="service.id ? updateService() : addService(service)">{{ service.id ? "Update" : "Add"}}</button>
+    
+    </div>
+    <div class="col-md-3"> </div>
+  </div>
+ 
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-secondary" (click)="add()">Add a new service</button>
+  </div>
+  </div> 
+
+  <hr>
+
+
+ 
+
+
