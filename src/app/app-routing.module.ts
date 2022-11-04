@@ -38,16 +38,16 @@ const routes: Routes = [
   },
   
   {
-    path: "corporate-customers", component: CorporateCustomersComponent
+    path: "corporate-customers", component: CorporateCustomersComponent,canActivate:[LoginGuard]
   },
   {
-    path: "individual-customers", component: IndividualCustomersComponent
+    path: "individual-customers", component: IndividualCustomersComponent,canActivate:[LoginGuard]
   },
   {
-    path: "corporateCustomer/details/:id", component: CustomerDetailsComponent
+    path: "corporateCustomer/details/:id", component: CustomerDetailsComponent,canActivate:[LoginGuard]
   },
   {
-    path: "individualCustomer/details/:id", component: IndividualDetailsComponent
+    path: "individualCustomer/details/:id", component: IndividualDetailsComponent,canActivate:[LoginGuard]
   },
   {
     path: "categories",
