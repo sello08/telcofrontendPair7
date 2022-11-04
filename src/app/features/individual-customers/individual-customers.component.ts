@@ -12,9 +12,6 @@ export class IndividualCustomersComponent implements OnInit {
   searchFName !: string;
   searchLName !: string;
   searchNationId !: number;
-
-
-
  individualCustomers : IndividualCustomers[] = [];
   
   constructor(private customerServiceService : CustomerServiceService, private router: Router) { }
@@ -24,5 +21,8 @@ export class IndividualCustomersComponent implements OnInit {
   }
   getCustomers(){
     this.customerServiceService.getIndividualCustomers().subscribe(respond => this.individualCustomers = respond);
+  }
+  showDetails(id: number){
+    this.router.navigate(['/individualCustomer/details', id])
   }
 }

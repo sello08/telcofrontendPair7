@@ -20,7 +20,7 @@
           <td>{{ corpCustomers.companyName }} </td>
           <td>{{ corpCustomers.taxNumber }}</td>
           <td>
-            <button>Details</button>
+            <button (click)="showDetails(corpCustomers.customerId)" class="btn btn-secondary">Details</button>
           </td>
         </tr>
     </tbody>

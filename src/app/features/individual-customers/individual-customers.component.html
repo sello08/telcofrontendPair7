@@ -23,7 +23,8 @@
         <td>{{ indCustomers.lastName }}</td>
         <td>{{ indCustomers.nationalIdentity }}</td>
         <td>
-          <button>Details</button>
+          <button (click)="showDetails(indCustomers.customerId)" class="btn btn-secondary">Details</button>
+         
         </td>
       </tr>
   </tbody>

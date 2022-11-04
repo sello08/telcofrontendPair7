@@ -29,6 +29,7 @@ import { TaxNumberPipe } from './pipes/tax-number.pipe';
 import { FirstNamePipe } from './pipes/first-name.pipe';
 import { LastNamePipe } from './pipes/last-name.pipe';
 import { IdPipe } from './pipes/id.pipe';
+import { IndividualDetailsComponent } from './features/individual-details/individual-details.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { IdPipe } from './pipes/id.pipe';
     FirstNamePipe,
     LastNamePipe,
     IdPipe,
+    IndividualDetailsComponent,
    
   ],
   imports: [

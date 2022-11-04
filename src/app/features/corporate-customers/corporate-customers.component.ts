@@ -9,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./corporate-customers.component.css']
 })
 export class CorporateCustomersComponent implements OnInit {
-
-  corporateCustomers : CorporateCustomers[] = [];
   searchName !: string;
   searchTax !: number;
+  corporateCustomers : CorporateCustomers[] = [];
+  
   
   constructor(private customerServiceService : CustomerServiceService, private router: Router) { }
 
@@ -22,5 +22,8 @@ export class CorporateCustomersComponent implements OnInit {
 
   getCustomers(){
     this.customerServiceService.getCorporateCustomers().subscribe(respond => this.corporateCustomers = respond)
+  }
+  showDetails(id: number | undefined){
+    this.router.navigate(['/corporateCustomer/details', id])
   }
 }

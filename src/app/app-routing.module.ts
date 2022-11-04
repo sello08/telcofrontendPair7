@@ -6,6 +6,7 @@ import { LoginGuard } from 'src/libs/guards/login.guard';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { IndividualCustomersComponent } from './features/individual-customers/individual-customers.component';
+import { IndividualDetailsComponent } from './features/individual-details/individual-details.component';
 
 
 const routes: Routes = [
@@ -43,7 +44,10 @@ const routes: Routes = [
     path: "individual-customers", component: IndividualCustomersComponent
   },
   {
-    path: "customer/details/:id", component: CustomerDetailsComponent
+    path: "corporateCustomer/details/:id", component: CustomerDetailsComponent
+  },
+  {
+    path: "individualCustomer/details/:id", component: IndividualDetailsComponent
   },
   {
     path: "categories",
