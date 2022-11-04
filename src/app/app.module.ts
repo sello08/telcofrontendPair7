@@ -30,6 +30,7 @@ import { FirstNamePipe } from './pipes/first-name.pipe';
 import { LastNamePipe } from './pipes/last-name.pipe';
 import { IdPipe } from './pipes/id.pipe';
 import { IndividualDetailsComponent } from './features/individual-details/individual-details.component';
+import { BirthDatePipe } from './pipes/birth-date.pipe';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { IndividualDetailsComponent } from './features/individual-details/indivi
     LastNamePipe,
     IdPipe,
     IndividualDetailsComponent,
+    BirthDatePipe,
    
   ],
   imports: [

@@ -12,6 +12,7 @@ export class IndividualCustomersComponent implements OnInit {
   searchFName !: string;
   searchLName !: string;
   searchNationId !: number;
+  searchBirthDate !: string;
  individualCustomers : IndividualCustomers[] = [];
   
   constructor(private customerServiceService : CustomerServiceService, private router: Router) { }
