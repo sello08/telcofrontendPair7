@@ -1,0 +1,36 @@
+<div class="filters">
+  <input class="searchFilter" type="text" [(ngModel)]="searchFName" placeholder="First Name">
+  <input class="searchFilter" type="text" [(ngModel)]="searchLName" placeholder="Last Name">
+  <input class="searchFilter" type="number" [(ngModel)]="searchNationId" placeholder="National Identity">
+  </div>
+
+
+<div class="tables">
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">#Id</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">National Id</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let indCustomers of individualCustomers | firstNamePipe: searchFName | lastNamePipe: searchLName | idPipe: searchNationId">
+
+      <tr>
+        <th scope="row">{{ indCustomers.customerId }}</th>
+        <td>{{ indCustomers.firstName }}</td>
+        <td>{{ indCustomers.lastName }}</td>
+        <td>{{ indCustomers.nationalIdentity }}</td>
+        <td>
+          <button>Details</button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+

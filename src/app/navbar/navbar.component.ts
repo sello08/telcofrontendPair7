@@ -8,7 +8,9 @@ import { AuthService, LocalStorageService, LoginService } from 'src/libs';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isAuthenticated: boolean =false;
+  
+ // isAuthenticated: boolean =false;
+
   constructor(private local:LocalStorageService, private toastr:ToastrService) { 
 
   }
@@ -24,7 +26,7 @@ ngOnInit(): void {
  
   onLogut() {
    this.local.logut();
-    this.isAuthenticated=false;
+    //this.isAuthenticated=false;
     console.log("token silindi")
     this.toastr.success("Token Deleted")
   }

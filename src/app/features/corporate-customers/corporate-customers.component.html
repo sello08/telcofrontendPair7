@@ -1,0 +1,31 @@
+
+<div class="filters">
+<input class="searchFilter" type="text" [(ngModel)]="searchName" placeholder="Company Name">
+<input class="searchFilter" type="number" [(ngModel)]="searchTax" placeholder="Tax Number">
+</div>
+
+<div class="tables">
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">#Id</th>
+        <th scope="col">Company Name</th>
+        <th scope="col">Tax Number</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let corpCustomers of corporateCustomers | filterNamePipe : searchName  | taxNumberPipe : searchTax">
+  
+        <tr>
+          <th scope="row">{{ corpCustomers.customerId }}</th>
+          <td>{{ corpCustomers.companyName }} </td>
+          <td>{{ corpCustomers.taxNumber }}</td>
+          <td>
+            <button>Details</button>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
