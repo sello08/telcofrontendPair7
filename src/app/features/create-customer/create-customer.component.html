@@ -1,0 +1,52 @@
+<div class="container">
+
+    <div class="content">
+        <div *ngIf="customerType" class="customer-type"> 
+            <h6> 
+                <button (click)="IndCustomer()" class="btn-indCustomer">Individual Customers</button>
+            </h6>
+    
+            <h6>
+                <button (click)="CorpCustomer()" class="btn-corpCustomer">Corporate Customers</button>
+            </h6>
+        
+            <div *ngIf="indCustomerForm" class="customer-Form1"> 
+                <form [formGroup]="individualForm">
+                <label>First Name</label>
+                <input type="text" formControlName="firstName">
+                <br>
+                <label>Last Name</label>
+                <input type="text" formControlName="lastName">
+                <br>
+                <label>National ID</label>
+                <input type="number" formControlName="nationalIdentity">
+                <br>
+                <label>Birth Date</label>
+                <input type="date" formControlName="birthDate">
+            
+                <button class="form-next" type="submit" [disabled]="!individualForm.valid" (click)="onSubmitIndividual()">Next</button>
+                </form>
+            </div>
+             <div *ngIf="corpCustomerForm" class="customer-Form2"> 
+                    <form [formGroup]="corporateForm">
+                    <label>Company Name</label>
+                    <input type="text" formControlName="companyName">
+                    <br>
+                    <label>Tax Number</label>
+                    <input type="number" formControlName="taxNumber">
+    
+                    <button class="form-next" type="submit" [disabled]="!corporateForm.valid" (click)="onSubmitCorporate()">Next</button>
+                    </form>
+            </div>
+            
+        </div>
+        <div *ngIf="servicelist" class="services">
+            <ul>
+                <li class="btn-services" *ngFor="let service of services"> {{service.id}} - {{service.name}}</li>
+            </ul>
+        </div>
+     
+    </div>
+    
+
+</div>

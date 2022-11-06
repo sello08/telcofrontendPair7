@@ -31,6 +31,8 @@ import { LastNamePipe } from './pipes/last-name.pipe';
 import { IdPipe } from './pipes/id.pipe';
 import { IndividualDetailsComponent } from './features/individual-details/individual-details.component';
 import { BirthDatePipe } from './pipes/birth-date.pipe';
+import { CustomersComponent } from './features/customers/customers.component';
+import { CreateCustomerComponent } from './features/create-customer/create-customer.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { BirthDatePipe } from './pipes/birth-date.pipe';
     IdPipe,
     IndividualDetailsComponent,
     BirthDatePipe,
+    CustomersComponent,
+    CreateCustomerComponent,
    
   ],
   imports: [

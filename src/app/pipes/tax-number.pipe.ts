@@ -8,7 +8,7 @@ export class TaxNumberPipe implements PipeTransform {
 
   transform(value: CorporateCustomers[],item: number): CorporateCustomers[] {
     
-    return value.filter(tax => !item || tax.taxNumber?.toString().toLocaleLowerCase().includes(item.toString().toLocaleLowerCase()))
+    return value.filter(tax => !item || tax.taxNumber?.toString().includes(item.toString()))
   }
 
 }

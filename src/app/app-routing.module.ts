@@ -1,3 +1,4 @@
+import { CustomersComponent } from './features/customers/customers.component';
 import { CorporateCustomersComponent } from './features/corporate-customers/corporate-customers.component';
 import { CustomerDetailsComponent } from './features/customer-details/customer-details/customer-details.component';
 import { NgModule } from '@angular/core';
@@ -39,6 +40,9 @@ const routes: Routes = [
   
   {
     path: "corporate-customers", component: CorporateCustomersComponent,canActivate:[LoginGuard]
+  },
+  {
+    path: "customers", component: CustomersComponent,canActivate:[LoginGuard]
   },
   {
     path: "individual-customers", component: IndividualCustomersComponent,canActivate:[LoginGuard]

@@ -18,6 +18,8 @@ export class CustomerDetailsComponent implements OnInit {
   ngOnInit(): void {
      this.route.params.subscribe(params => {
      this.customerServiceService.getCorporateCustomerDetail(+params['id']).subscribe(response => this.details = response[0])
+    
+     
    });
   }
 }

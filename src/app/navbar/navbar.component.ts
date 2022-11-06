@@ -24,8 +24,8 @@ ngOnInit(): void {
     return this.local.getToken();
   }
  
-  onLogut() {
-   this.local.logut();
+  onLogOut() {
+   this.local.logOut();
     //this.isAuthenticated=false;
     console.log("token silindi")
     this.toastr.success("Token Deleted")

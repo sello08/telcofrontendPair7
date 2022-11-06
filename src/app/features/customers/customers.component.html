@@ -1,0 +1,18 @@
+
+
+
+
+
+
+<app-create-customer *ngIf="isModalOpen"></app-create-customer>
+       
+<h6 routerLink="/individual-customers"> 
+    <button class="btn btn-primary me-md-2">Individual Customers</button>
+</h6>
+
+<h6 routerLink="/corporate-customers">
+    <button class="btn btn-primary me-md-2">Corporate Customers</button>
+</h6>
+<h6>
+    <button (click)="creatingCustomer()" class="btn btn-primary me-md-2">Create Customer</button>
+</h6>

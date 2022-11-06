@@ -11,12 +11,11 @@
     <!-- <h6 routerLink="/services">Service</h6>  // anasayfa--> 
     <h6 routerLink="/products">Product</h6>
     <h6 routerLink="/categories">Category</h6>
-    <h6 routerLink="/individual-customers">Individual Customers</h6>
-    <h6 routerLink="/corporate-customers">Corporate Customers</h6>
+    <h6 routerLink="/customers">Customers</h6>
     <h6 routerLink="/services">Service</h6>
 
         <h6 *ngIf="!loggedin()"  class="btn btn-primary me-md-2" routerLink="/auth">LogIn</h6>
-        <button *ngIf="loggedin()"  class="btn btn-primary me-md-2" (click)="onLogut()">LogOut</button>
+        <button *ngIf="loggedin()"  class="btn btn-primary me-md-2" (click)="onLogOut()">LogOut</button>
 
   </igx-navbar>
 </div>

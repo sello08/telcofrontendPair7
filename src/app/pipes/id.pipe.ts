@@ -8,7 +8,7 @@ export class IdPipe implements PipeTransform {
 
   transform(value: IndividualCustomers[],item: number): IndividualCustomers[] {
     
-    return value.filter(id => !item || id.nationalIdentity?.toString().toLocaleLowerCase().includes(item.toString().toLocaleLowerCase()))
+    return value.filter(id => !item || id.nationalIdentity?.toString().includes(item.toString()))
   }
 
 }
