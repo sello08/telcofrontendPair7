@@ -1,3 +1,4 @@
+import { CreateCustomerComponent } from './features/create-customer/create-customer.component';
 import { CustomersComponent } from './features/customers/customers.component';
 import { CorporateCustomersComponent } from './features/corporate-customers/corporate-customers.component';
 import { CustomerDetailsComponent } from './features/customer-details/customer-details/customer-details.component';
@@ -52,6 +53,9 @@ const routes: Routes = [
   },
   {
     path: "individualCustomer/details/:id", component: IndividualDetailsComponent,canActivate:[LoginGuard]
+  },
+  {
+    path: "customer/create", component: CreateCustomerComponent,canActivate:[LoginGuard]
   },
   {
     path: "categories",

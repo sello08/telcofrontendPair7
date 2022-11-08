@@ -25,6 +25,10 @@ export class CustomerServiceService {
     return this.httpClient.get<IndividualCustomers[]>('http://localhost:3000/individualCustomers?customerId=' + id)
   }
 
+  addCorporateCustomer(customer : CorporateCustomers[]):Observable<CorporateCustomers[]>{
+    return this.httpClient.post<CorporateCustomers[]>('http://localhost:3000/corporateCustomers', customer)
+  }
+
 
 
 

@@ -74,8 +74,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreModule.forFeature('corpCustomer', corpCustomerReducer),
     StoreModule.forFeature('service', serviceReducer),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
     ToastrModule.forRoot({

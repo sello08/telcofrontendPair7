@@ -1,3 +1,5 @@
+import { CustomerServiceService } from './../../../libs/services/customer-service.service';
+import { Router } from '@angular/router';
 import { indCustomerSelector, corpCustomerSelector } from './../store/selectors/customer.selector';
 import { serviceSelector } from '../store/selectors/service.selector';
 import { CorporateCustomers } from './../../../libs/models/corporateCustomers';
@@ -10,7 +12,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {  Store } from '@ngrx/store';
 import { addService } from '../store/actions/service.actions';
 import {  Observable } from 'rxjs';
-import { response } from 'express';
 
 @Component({
   selector: 'app-create-customer',
@@ -18,7 +19,7 @@ import { response } from 'express';
   styleUrls: ['./create-customer.component.css']
 })
 export class CreateCustomerComponent implements OnInit {
-
+ 
   customerType : boolean = true
   indCustomerForm : boolean = false;
   corpCustomerForm : boolean = false;
@@ -56,7 +57,7 @@ export class CreateCustomerComponent implements OnInit {
 
 
 
-  constructor(private servicesService : ServicesService, private store : Store) { }
+  constructor(private servicesService : ServicesService, private store : Store, private router: Router, private customerService : CustomerServiceService) { }
 
   ngOnInit(): void {
     this.getServices()
@@ -126,6 +127,8 @@ export class CreateCustomerComponent implements OnInit {
 
     //this.store.select<Service[]>(selectedService).subscribe(response => this.serviceSave = response)
 
+
+    //-------------------- Storedan verilerin çekilmesi. Verileri çekmeden önce observable türünde ve data türü olarak customer veya service olmasına göre interface eklemeleri yapıldı.
     this.serviceSelection = this.store.select(serviceSelector)
     this.serviceSelection.subscribe(response => { this.serviceSave = response })
 
@@ -134,18 +137,19 @@ export class CreateCustomerComponent implements OnInit {
 
     this.corpCustomerSelection = this.store.select(corpCustomerSelector)
     this.corpCustomerSelection.subscribe(response => {this.corpCustomerSave = response})
-    
-    
-    
    }
 
 
    saveCustomer(){
-    console.log("dsdsa");
+    console.log("denemmmeeee",this.corpCustomerSave);
+    console.log("denemmmeeee2",{...this.corpCustomerSave});
     
-   }
-   
- 
+    this.customerService.getCorporateCustomerDetail
+    this.customerService.addCorporateCustomer(this.corpCustomerSave)
+  }
   
 }
+
+
+
 

@@ -1,6 +1,6 @@
 <div class="container2">
 
-    <div class="content">
+    <div  class="content">
         <div *ngIf="customerType" class="customer-type"> 
             <h6> 
                 <button (click)="IndCustomer()" class="btn-indCustomer">Individual Customers</button>
@@ -40,6 +40,7 @@
             </div>
             
         </div>
+        
         <div *ngIf="servicelist" class="services">
             <ul>
                 <li (click)="selectedService = service" class="btn-services" *ngFor="let service of services"> {{service.id}} - {{service.name}}</li>
@@ -50,7 +51,6 @@
         <div *ngIf="customerInfos" class="customer-infos">
             <h4>Customer</h4>
             <span *ngIf="showIndCustomer">
-                <h4>Customer</h4>
                  First Name: {{indCustomerSave[0].firstName}}
                  <br>
                  Last Name: {{indCustomerSave[0].lastName}}
@@ -74,7 +74,7 @@
                     
             </span>
             <br>
-            <button class="form-next" type="button"  (click)="saveCustomer">Save</button>
+            <button routerLink="/customers" (click)="saveCustomer()">Save</button>
         </div>
      
         </div>

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,11 +10,11 @@ export class CustomersComponent implements OnInit {
 
   isModalOpen : boolean = false;
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
   }
   creatingCustomer(){
-    this.isModalOpen = true;
+    this.router.navigate(['customer/create'])
   }
 }
