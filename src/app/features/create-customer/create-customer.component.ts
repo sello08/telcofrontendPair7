@@ -1,3 +1,6 @@
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { Invoice } from './../../../libs/models/invoice';
+import { Subscription } from './../../../libs/models/subscription';
 import { CustomerServiceService } from './../../../libs/services/customer-service.service';
 import { Router } from '@angular/router';
 import { indCustomerSelector, corpCustomerSelector } from './../store/selectors/customer.selector';
@@ -12,6 +15,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {  Store } from '@ngrx/store';
 import { addService } from '../store/actions/service.actions';
 import {  Observable } from 'rxjs';
+import { TreeGridFilteringStrategy } from 'igniteui-angular';
 
 @Component({
   selector: 'app-create-customer',
@@ -29,6 +33,8 @@ export class CreateCustomerComponent implements OnInit {
   services : Service[] = [];
   servicelist : boolean = false;
   selectedService !: Service ;
+  selectedIndCustomer !: IndividualCustomers ;
+  selectedCorpCustomers !: CorporateCustomers;
   customerInfos : boolean = false;
   serviceSelection !: Observable<Service[]>
   indCustomerSelection !: Observable<IndividualCustomers[]>
@@ -36,6 +42,10 @@ export class CreateCustomerComponent implements OnInit {
   serviceSave  !: Service[];
   indCustomerSave  !: IndividualCustomers[];
   corpCustomerSave  !: CorporateCustomers[];
+  deneme !: CorporateCustomers;
+  deneme3 !: Invoice;
+  deneme2 !: IndividualCustomers;
+  subscriptionId !: number;
   
 
 //------------------Customer Forms----------------------------------------------------------------------------------------------------------
@@ -57,7 +67,7 @@ export class CreateCustomerComponent implements OnInit {
 
 
 
-  constructor(private servicesService : ServicesService, private store : Store, private router: Router, private customerService : CustomerServiceService) { }
+  constructor(private servicesService : ServicesService, private store : Store, private router: Router, private customerService : CustomerServiceService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
     this.getServices()
@@ -82,7 +92,7 @@ export class CreateCustomerComponent implements OnInit {
   }
   onSubmitCorporate(){
 
-    this.individualForm.reset();
+    this.corporateForm.reset();
     this.customerType = false;
     this.servicelist = true;
   }
@@ -100,6 +110,9 @@ export class CreateCustomerComponent implements OnInit {
       customer: this.individualForm.value as IndividualCustomers
     }));
 
+    this.selectedIndCustomer = this.individualForm.value as IndividualCustomers
+    
+
     this.onSubmitIndividual();
    }
 
@@ -111,6 +124,8 @@ export class CreateCustomerComponent implements OnInit {
     this.store.dispatch(addCorpCustomer({
       customer: this.corporateForm.value as CorporateCustomers
     }));
+
+    this.selectedCorpCustomers = this.corporateForm.value as CorporateCustomers
 
     this.onSubmitCorporate();
    }
@@ -141,11 +156,52 @@ export class CreateCustomerComponent implements OnInit {
 
 
    saveCustomer(){
-    console.log("denemmmeeee",this.corpCustomerSave);
-    console.log("denemmmeeee2",{...this.corpCustomerSave});
-    
-    this.customerService.getCorporateCustomerDetail
-    this.customerService.addCorporateCustomer(this.corpCustomerSave)
+    if(this.corpCustomerSave.length > 0){
+      const customerId = Math.round(Math.random()*100);
+
+      this.customerService.addCorporateCustomer({...this.corpCustomerSave[0], customerId: customerId})
+      .subscribe(response => {
+        this.deneme = response;
+        this.toastr.success('Customer başarıyla eklendi')
+      }, this.catchError)
+
+      this.customerService.addSubscriptions(customerId, this.selectedService.id)
+        .subscribe(response => {
+          this.toastr.success('Subscription başarıyla eklendi')
+          this.customerService.addInvoices(response.id).subscribe(response => {
+            this.deneme3 = response
+            this.toastr.success('Invoice başarıyla eklendi')
+            this.corpCustomerSave = [];
+          }, this.catchError)
+        }, this.catchError);
+        
+    }
+    else if(this.indCustomerSave.length > 0){
+      
+      const customerId = Math.round(Math.random()*100);
+
+      this.customerService.addIndividualCustomer({...this.indCustomerSave[0], customerId: customerId})
+      .subscribe(response => {
+        this.deneme2 = response
+        this.toastr.success('Customer başarıyla eklendi')
+      }, this.catchError)
+
+       this.customerService.addSubscriptions(customerId, this.selectedService.id)
+        .subscribe(response => {
+          this.toastr.success('Subscription başarıyla eklendi');
+          this.customerService.addInvoices(response.id).subscribe(response => {
+            this.deneme3 = response;
+            this.toastr.success('Invoice başarıyla eklendi')
+            this.indCustomerSave = [];
+          }, this.catchError)
+        }, this.catchError);
+        
+    }
+  
+  }
+
+  catchError(error: Error) {
+    this.toastr.success('Bir hata olustu ' + error.message)
   }
   
 }

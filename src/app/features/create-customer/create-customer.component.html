@@ -51,20 +51,20 @@
         <div *ngIf="customerInfos" class="customer-infos">
             <h4>Customer</h4>
             <span *ngIf="showIndCustomer">
-                 First Name: {{indCustomerSave[0].firstName}}
+                 First Name: {{selectedIndCustomer.firstName}}
                  <br>
-                 Last Name: {{indCustomerSave[0].lastName}}
+                 Last Name: {{selectedIndCustomer.lastName}}
                  <br>
-                 Birth Date:{{indCustomerSave[0].birthDate}}
+                 Birth Date:{{selectedIndCustomer.birthDate}}
                  <br>
-                 National ID: {{indCustomerSave[0].nationalIdentity}}
+                 National ID: {{selectedIndCustomer.nationalIdentity}}
                  <br>
                     
             </span>
             <span *ngIf="showCorpCustomer">
-                companyName : {{corpCustomerSave[0].companyName}}
+                companyName : {{selectedCorpCustomers.companyName}}
                 <br>
-                 Tax Number : {{corpCustomerSave[0].taxNumber}}
+                 Tax Number : {{selectedCorpCustomers.taxNumber}}
                  <br>
             </span>
             <span>
