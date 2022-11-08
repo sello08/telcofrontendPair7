@@ -1,7 +1,9 @@
+import { Store } from '@ngrx/store';
 import { CorporateCustomers } from './../../../../libs/models/corporateCustomers';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerServiceService } from './../../../../libs/services/customer-service.service';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-customer-details',
@@ -13,7 +15,7 @@ export class CustomerDetailsComponent implements OnInit {
   id !: number ;
   details !: CorporateCustomers;
 
-  constructor(private customerServiceService : CustomerServiceService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private customerServiceService : CustomerServiceService, private router: Router, private route: ActivatedRoute, private store: Store) { }
 
   ngOnInit(): void {
      this.route.params.subscribe(params => {
@@ -22,4 +24,6 @@ export class CustomerDetailsComponent implements OnInit {
      
    });
   }
+
+ 
 }

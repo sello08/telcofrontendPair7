@@ -1,7 +1,7 @@
 
+import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -14,7 +14,6 @@ import {
 	IgxButtonModule,
   IgxBadgeModule 
  } from "igniteui-angular";
-
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LoadingInterceptor, LoadingService } from 'src/libs';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -33,6 +32,10 @@ import { IndividualDetailsComponent } from './features/individual-details/indivi
 import { BirthDatePipe } from './pipes/birth-date.pipe';
 import { CustomersComponent } from './features/customers/customers.component';
 import { CreateCustomerComponent } from './features/create-customer/create-customer.component';
+import { StoreModule } from '@ngrx/store';
+import { indCustomerReducer, corpCustomerReducer } from './features/reducers/customer.reducer';
+import { serviceReducer } from './features/reducers/services.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -62,22 +65,27 @@ import { CreateCustomerComponent } from './features/create-customer/create-custo
     FormsModule,ReactiveFormsModule,
     HttpClientModule, 
     FormsModule,
-   
-      //Igx UI
     IgxIconModule,
     IgxNavbarModule,
     IgxButtonModule,  
     IgxBadgeModule ,
-
-      //ngx-toastr
-      ToastrModule.forRoot({
+    StoreModule.forRoot({indCustomer: indCustomerReducer}),
+    StoreModule.forRoot({corpCustomer: corpCustomerReducer}),
+    StoreModule.forRoot({service: serviceReducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
+    ToastrModule.forRoot({
         timeOut:4000,
         progressBar:true,
         closeButton:false,
         progressAnimation:"decreasing",
         preventDuplicates:true,
         positionClass:"toast-bottom-left"
-      })// ToastrModule added
+    })
+    
     
   ],
   providers: [LoginService,LoadingService,{ provide: HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi: true }],

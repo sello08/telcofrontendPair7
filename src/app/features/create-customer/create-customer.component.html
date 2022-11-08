@@ -24,7 +24,7 @@
                 <label>Birth Date</label>
                 <input type="date" formControlName="birthDate">
             
-                <button class="form-next" type="submit" [disabled]="!individualForm.valid" (click)="onSubmitIndividual()">Next</button>
+                <button class="form-next1" type="submit" [disabled]="!individualForm.valid" (click)="addIndCustomer()">Next</button>
                 </form>
             </div>
              <div *ngIf="corpCustomerForm" class="customer-Form2"> 
@@ -35,14 +35,16 @@
                     <label>Tax Number</label>
                     <input type="number" formControlName="taxNumber">
     
-                    <button class="form-next" type="submit" [disabled]="!corporateForm.valid" (click)="onSubmitCorporate()">Next</button>
+                    <button class="form-next" type="button" [disabled]="!corporateForm.valid" (click)="addCorpCustomer()">Next</button>
                     </form>
             </div>
             
         </div>
         <div *ngIf="servicelist" class="services">
             <ul>
-                <li class="btn-services" *ngFor="let service of services"> {{service.id}} - {{service.name}}</li>
+                <li (click)="selectService()" class="btn-services" *ngFor="let service of services"> {{service.id}} - {{service.name}}</li>
+                <button class="form-next" type="button"  (click)="onSubmitCorporate()">Next</button>
+                    
             </ul>
         </div>
      
