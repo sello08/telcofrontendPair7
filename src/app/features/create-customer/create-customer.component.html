@@ -42,13 +42,20 @@
         </div>
         <div *ngIf="servicelist" class="services">
             <ul>
-                <li (click)="selectService()" class="btn-services" *ngFor="let service of services"> {{service.id}} - {{service.name}}</li>
-                <button class="form-next" type="button"  (click)="onSubmitCorporate()">Next</button>
+                <li (click)="selectedService = service" class="btn-services" *ngFor="let service of services"> {{service.id}} - {{service.name}}</li>
+                <button class="form-next" type="button"  (click)="addService()">Next</button>
+                    
+            </ul>
+        </div>
+        <div *ngIf="customerInfos" class="customer-infos">
+            <ul>
+                
+                <button class="form-next" type="button"  (click)="saveCustomer">Next</button>
                     
             </ul>
         </div>
      
-    </div>
+        </div>
     
 
 </div>

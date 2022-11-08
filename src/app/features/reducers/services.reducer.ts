@@ -1,5 +1,3 @@
-import { ServicesComponent } from './../service/services.component';
-
 import { on, createReducer } from '@ngrx/store';
 import { Service } from 'src/libs';
 import { addService } from '../actions/service.actions';

@@ -69,9 +69,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     IgxNavbarModule,
     IgxButtonModule,  
     IgxBadgeModule ,
-    StoreModule.forRoot({indCustomer: indCustomerReducer}),
-    StoreModule.forRoot({corpCustomer: corpCustomerReducer}),
-    StoreModule.forRoot({service: serviceReducer}),
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('indCustomer', indCustomerReducer),
+    StoreModule.forFeature('corpCustomer', corpCustomerReducer),
+    StoreModule.forFeature('service', serviceReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
