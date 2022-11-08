@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container2">
 
     <div class="content">
         <div *ngIf="customerType" class="customer-type"> 
@@ -48,11 +48,33 @@
             </ul>
         </div>
         <div *ngIf="customerInfos" class="customer-infos">
-            <ul>
-                
-                <button class="form-next" type="button"  (click)="saveCustomer">Next</button>
+            <h4>Customer</h4>
+            <span *ngIf="showIndCustomer">
+                <h4>Customer</h4>
+                 First Name: {{indCustomerSave[0].firstName}}
+                 <br>
+                 Last Name: {{indCustomerSave[0].lastName}}
+                 <br>
+                 Birth Date:{{indCustomerSave[0].birthDate}}
+                 <br>
+                 National ID: {{indCustomerSave[0].nationalIdentity}}
+                 <br>
                     
-            </ul>
+            </span>
+            <span *ngIf="showCorpCustomer">
+                companyName : {{corpCustomerSave[0].companyName}}
+                <br>
+                 Tax Number : {{corpCustomerSave[0].taxNumber}}
+                 <br>
+            </span>
+            <span>
+                <h4>Service</h4>
+                {{serviceSave[0].id}}-{{serviceSave[0].name}}
+                
+                    
+            </span>
+            <br>
+            <button class="form-next" type="button"  (click)="saveCustomer">Save</button>
         </div>
      
         </div>

@@ -33,8 +33,8 @@ import { BirthDatePipe } from './pipes/birth-date.pipe';
 import { CustomersComponent } from './features/customers/customers.component';
 import { CreateCustomerComponent } from './features/create-customer/create-customer.component';
 import { StoreModule } from '@ngrx/store';
-import { indCustomerReducer, corpCustomerReducer } from './features/reducers/customer.reducer';
-import { serviceReducer } from './features/reducers/services.reducer';
+import { indCustomerReducer, corpCustomerReducer } from './features/store/reducers/customer.reducer';
+import { serviceReducer } from './features/store/reducers/services.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({

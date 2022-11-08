@@ -1,14 +1,16 @@
-import { serviceReducer } from './../reducers/services.reducer';
-import { Observable } from 'rxjs';
+import { indCustomerSelector, corpCustomerSelector } from './../store/selectors/customer.selector';
+import { serviceSelector } from '../store/selectors/service.selector';
 import { CorporateCustomers } from './../../../libs/models/corporateCustomers';
 import { IndividualCustomers } from './../../../libs/models/individualCustomers';
-import { addCorpCustomer, addIndCustomer } from '../actions/customer.actions';
+import { addCorpCustomer, addIndCustomer } from '../store/actions/customer.actions';
 import { Service } from './../../../libs/models/service';
 import { ServicesService } from './../../../libs/services/services.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { addService } from '../actions/service.actions';
+import {  Store } from '@ngrx/store';
+import { addService } from '../store/actions/service.actions';
+import {  Observable } from 'rxjs';
+import { response } from 'express';
 
 @Component({
   selector: 'app-create-customer',
@@ -20,12 +22,20 @@ export class CreateCustomerComponent implements OnInit {
   customerType : boolean = true
   indCustomerForm : boolean = false;
   corpCustomerForm : boolean = false;
+  showIndCustomer : boolean = false;
+  showCorpCustomer : boolean = false;
   CustomerType : string = "";
   services : Service[] = [];
   servicelist : boolean = false;
   selectedService !: Service ;
   customerInfos : boolean = false;
-  serviceSave !: Service[];
+  serviceSelection !: Observable<Service[]>
+  indCustomerSelection !: Observable<IndividualCustomers[]>
+  corpCustomerSelection !: Observable<CorporateCustomers[]>
+  serviceSave  !: Service[];
+  indCustomerSave  !: IndividualCustomers[];
+  corpCustomerSave  !: CorporateCustomers[];
+  
 
 //------------------Customer Forms----------------------------------------------------------------------------------------------------------
 
@@ -56,10 +66,12 @@ export class CreateCustomerComponent implements OnInit {
   IndCustomer(){
     this.indCustomerForm = true;
     this.corpCustomerForm = false;
+    this.showIndCustomer = true;
   }
   CorpCustomer(){
     this.indCustomerForm = false;
     this.corpCustomerForm = true;
+    this.showCorpCustomer = true;
   }
   onSubmitIndividual(){
     
@@ -101,18 +113,30 @@ export class CreateCustomerComponent implements OnInit {
 
     this.onSubmitCorporate();
    }
-   
+
 
    addService(){
-    
+    this.servicelist = false
+    this.customerInfos = true
+
+
     this.store.dispatch(addService({
       service: this.selectedService
     }));
 
-    this.customerInfos = true
-    //console.log("sdsadsndsaj",this.selectedService);
+    //this.store.select<Service[]>(selectedService).subscribe(response => this.serviceSave = response)
 
-     //this.store.select<Service[]>('service').subscribe(response => this.serviceSave = response)
+    this.serviceSelection = this.store.select(serviceSelector)
+    this.serviceSelection.subscribe(response => { this.serviceSave = response })
+
+    this.indCustomerSelection = this.store.select(indCustomerSelector)
+    this.indCustomerSelection.subscribe(response => {this.indCustomerSave = response})
+
+    this.corpCustomerSelection = this.store.select(corpCustomerSelector)
+    this.corpCustomerSelection.subscribe(response => {this.corpCustomerSave = response})
+    
+    
+    
    }
 
 
